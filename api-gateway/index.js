@@ -2,9 +2,10 @@ const express = require("express");
 const app = express();
 const axios = require("axios");
 const port = 8080;
+const url = "http://localhost";
 
 app.get("/trips", async (req, res) => {
-  let { data: trips } = await axios.get("http://localhost:9000/trips");
+  let { data: trips } = await axios.get(`${url}:9000/trips`);
   let query = req.query;
   let keyword = "";
   if (query.keyword) keyword = query.keyword;
@@ -28,5 +29,5 @@ app.get("/trips", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`app listening at http://localhost:${port}`);
+  console.log(`app listening at ${url}:${port}`);
 });
