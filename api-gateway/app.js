@@ -32,13 +32,19 @@ app.get("/trips", async (req, res) => {
         return tag || title || description;
       });
     });
-
-    res.json(filteredTrips.sort((a, b) => b.weight - a.weight));
+    if (filteredTrips.length !== 0) {
+      return res
+        .status(200)
+        .json(filteredTrips.sort((a, b) => b.weight - a.weight));
+    }
+    return res.status(404).json(filteredTrips);
   }
 
-  res.json(trips);
+  return res.json(trips);
 });
 
 app.listen(port, () => {
   console.log(`app listening at ${url}:${port}`);
 });
+
+module.exports = app;

@@ -16,14 +16,7 @@ header {
   width: 100%;
   display: inline-block;
   position: relative;
-  margin: 20px;
-}
-
-.search-icon {
-  top: 4px;
-  left: 0;
-  position: absolute;
-  z-index: 100;
+  margin: 20px 20px 40px 20px;
 }
 
 .input-style {
@@ -37,14 +30,6 @@ header {
   padding: 5px 0;
 }
 
-.input-style:focus {
-  outline: none;
-}
-
-.input-style:focus + .textfield-bottom-line {
-  width: 100%;
-}
-
 .textfield-bottom-line {
   position: absolute;
   bottom: 0;
@@ -54,4 +39,24 @@ header {
   width: 0;
   background: #2c9cdb;
   transition: ease-in-out 0.5s width;
+}
+
+.search {
+  top: 4px;
+  left: 0;
+  position: absolute;
+  z-index: 100;
+  transition: ease-in-out 0.5s;
+}
+
+.input-style:focus {
+  outline: none;
+}
+
+.input-style:focus ~ .textfield-bottom-line {
+  width: 100%;
+}
+
+.input-style:focus ~ .search {
+  transform: rotateY(360deg);
 }

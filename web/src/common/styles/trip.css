@@ -40,10 +40,12 @@ img {
 .sub-image {
   aspect-ratio: 1;
   max-height: 150px;
-  margin: 0 10px 0 10px;
+  margin: 0 10px 0 0;
 }
 
 .title {
+  text-decoration: none;
+  color: #000;
   font-size: 24px;
   font-weight: 600;
 }
@@ -87,6 +89,7 @@ a {
   .grid-container {
     display: inline;
     border-bottom: solid 1px #ebebeb;
+    width: 100%;
   }
   .trip-content-container {
     align-items: center;

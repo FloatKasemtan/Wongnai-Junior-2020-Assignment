@@ -5,7 +5,9 @@ import "../common/styles/trip.css";
 const TripContent = ({ title, description, tags, photos, url, ...rest }) => {
   return (
     <div {...rest} className="trip-content-container">
-      <div className="title">{title}</div>
+      <a className="title" href={url}>
+        {title}
+      </a>
       <span className="description">
         {description.length > 200
           ? description.substring(0, 200) + "...."
@@ -16,18 +18,37 @@ const TripContent = ({ title, description, tags, photos, url, ...rest }) => {
 
       <div className="tag-style">
         หมวด &#8226;&ensp;
-        {tags.map((tag) => (
-          <span key={tag}>
-            <a
-              key={tag}
-              href={"http://localhost:3000?keyword=" + tag}
-              className="tag-style"
-            >
-              {tag}
-            </a>
-            &ensp;
-          </span>
-        ))}
+        {tags.map((tag, idx) => {
+          if (idx === tags.length - 1) {
+            return (
+              <span key={idx}>
+                <span>และ&ensp;</span>
+                <span>
+                  <a
+                    key={tag}
+                    href={"http://localhost:3000?keyword=" + tag}
+                    className="tag-style"
+                  >
+                    {tag}
+                  </a>
+                  &ensp;
+                </span>
+              </span>
+            );
+          }
+          return (
+            <span key={idx}>
+              <a
+                key={tag}
+                href={"http://localhost:3000?keyword=" + tag}
+                className="tag-style"
+              >
+                {tag}
+              </a>
+              &ensp;
+            </span>
+          );
+        })}
       </div>
       <TripSubPictures photos={photos.splice(1).slice(0, 3)} />
     </div>

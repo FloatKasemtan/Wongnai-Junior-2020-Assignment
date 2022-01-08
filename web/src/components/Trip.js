@@ -7,10 +7,9 @@ const Trip = ({ trip_info, ...rest }) => {
     <div {...rest} className="grid-container">
       <div
         className="main-img"
-        // src={trip_info.photos[0]}
-        // alt={trip_info.photos[0]}
         style={{ backgroundImage: `url(${trip_info.photos[0]})` }}
       />
+
       <TripContent
         title={trip_info.title}
         description={trip_info.description}
