@@ -11,6 +11,19 @@ app.use(
   })
 );
 
+app.get("/", async (req, res) => {
+  axios
+    .get(`${url}:9000/trips`)
+    .then(() => {
+      console.log("JSON server is ready");
+    })
+    .catch((e) => {
+      console.log("JSON server could not be available");
+      res.status(404).send(false);
+    });
+  res.status(200).send(true);
+});
+
 app.get("/trips", async (req, res) => {
   let { data: trips } = await axios.get(`${url}:9000/trips`);
   let query = req.query;
