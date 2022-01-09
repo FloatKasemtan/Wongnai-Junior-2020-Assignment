@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import TripSubPictures from "./TripSubPictures";
+import Tag from "./Tag";
 import "../common/styles/trip.css";
 
 const TripContent = ({ title, description, tags, photos, url, ...rest }) => {
@@ -13,41 +14,20 @@ const TripContent = ({ title, description, tags, photos, url, ...rest }) => {
           ? description.substring(0, 200) + "...."
           : description}
         &ensp;
-        <a href={url}>อ่านต่อ</a>{" "}
+        <a href={url}>อ่านต่อ</a>
       </span>
-
       <div className="tag-style">
         หมวด &#8226;&ensp;
         {tags.map((tag, idx) => {
           if (idx === tags.length - 1) {
             return (
-              <span key={idx}>
+              <Fragment key={idx}>
                 <span>และ&ensp;</span>
-                <span>
-                  <a
-                    key={tag}
-                    href={"http://localhost:3000?keyword=" + tag}
-                    className="tag-style"
-                  >
-                    {tag}
-                  </a>
-                  &ensp;
-                </span>
-              </span>
+                <Tag tag={tag} />
+              </Fragment>
             );
           }
-          return (
-            <span key={idx}>
-              <a
-                key={tag}
-                href={"http://localhost:3000?keyword=" + tag}
-                className="tag-style"
-              >
-                {tag}
-              </a>
-              &ensp;
-            </span>
-          );
+          return <Tag key={idx} tag={tag} />;
         })}
       </div>
       <TripSubPictures photos={photos.splice(1).slice(0, 3)} />
